@@ -3,7 +3,6 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Header = () => {
   const { data: session, status } = useSession();
-  console.log(session, status);
   return (
     <>
       <div className='bg-gray-900'>
