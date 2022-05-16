@@ -10,12 +10,12 @@ export default authHandler;
 const options = {
   providers: [
     GitHubProvider({
-      clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
   adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXT_PUBLIC_SECRET,
+  secret: process.env.SECRET,
   pages: {
     signIn: '/auth/login',
   },
