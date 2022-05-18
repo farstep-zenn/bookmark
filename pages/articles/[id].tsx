@@ -11,16 +11,19 @@ type Props = {
 };
 
 async function addBookmark(id: number): Promise<void> {
-  await fetch(process.env.NEXT_PUBLIC_DOMAIN + `/api/bookmark/add/${id}`, {
+  await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + `/api/bookmark/add/${id}`, {
     method: 'PUT',
   });
   Router.push(`/articles/${id}`);
 }
 
 async function removeBookmark(id: number): Promise<void> {
-  await fetch(process.env.NEXT_PUBLIC_DOMAIN + `/api/bookmark/remove/${id}`, {
-    method: 'PUT',
-  });
+  await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/bookmark/remove/${id}`,
+    {
+      method: 'PUT',
+    }
+  );
   Router.push(`/articles/${id}`);
 }
 
