@@ -24,6 +24,7 @@ async function removeBookmark(id: number): Promise<void> {
 const Mypage = (props: Props) => {
   return (
     <div className='container mx-auto px-6 py-16'>
+      <Toaster />
       {props.articles.length > 0 ? (
         // ブックマークしている記事が存在する場合、記事の一覧を表示します
         <div className='mx-auto sm:w-8/12 lg:w-6/12 xl:w-[40%]'>
@@ -31,7 +32,6 @@ const Mypage = (props: Props) => {
             <h1 className='mb-8 text-center text-3xl'>
               All articles you bookmarked
             </h1>
-            <Toaster />
             <table className='w-full table-auto'>
               <tbody className='divide-y divide-slate-100 text-sm font-medium'>
                 {props.articles.map((article) => (
