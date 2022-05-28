@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getSession } from 'next-auth/react';
 import prisma from '../lib/prisma';
 import { ArticleProps } from '../types/Article';
+import toast, { Toaster } from 'react-hot-toast';
 
 type Props = {
   articles: ArticleProps[];
@@ -16,6 +17,7 @@ async function removeBookmark(id: number): Promise<void> {
       method: 'PUT',
     }
   );
+  toast.success('Bookmark successfully deleted', { duration: 3000 });
   Router.push('/mypage');
 }
 
@@ -29,6 +31,7 @@ const Mypage = (props: Props) => {
             <h1 className='mb-8 text-center text-3xl'>
               All articles you bookmarked
             </h1>
+            <Toaster />
             <table className='w-full table-auto'>
               <tbody className='divide-y divide-slate-100 text-sm font-medium'>
                 {props.articles.map((article) => (
