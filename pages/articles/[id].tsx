@@ -4,6 +4,7 @@ import { getSession } from 'next-auth/react';
 import prisma from '../../lib/prisma';
 import { ArticleProps } from '../../types/Article';
 import { User } from '../../types/User';
+import toast, { Toaster } from 'react-hot-toast';
 
 type Props = {
   article: ArticleProps;
@@ -14,6 +15,7 @@ async function addBookmark(id: number): Promise<void> {
   await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + `/api/bookmark/add/${id}`, {
     method: 'PUT',
   });
+  toast.success('Bookmark successfully added', { duration: 3000 });
   Router.push(`/articles/${id}`);
 }
 
@@ -24,6 +26,7 @@ async function removeBookmark(id: number): Promise<void> {
       method: 'PUT',
     }
   );
+  toast.success('Bookmark successfully deleted', { duration: 3000 });
   Router.push(`/articles/${id}`);
 }
 
@@ -37,6 +40,7 @@ const Article = (props: Props) => {
           <p className='text-blueGray-500 mt-4 text-lg leading-relaxed'>
             {props.article.content}
           </p>
+          <Toaster />
           {props.isBookmarked ? (
             // ブックマークされている場合には、ブックマークを削除するボタンを設置します
             <button
