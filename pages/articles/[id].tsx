@@ -15,7 +15,7 @@ async function addBookmark(id: number): Promise<void> {
   await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + `/api/bookmark/add/${id}`, {
     method: 'PUT',
   });
-  toast.success('Bookmark successfully added', { duration: 3000 });
+  // toast.success('Bookmark successfully added', { duration: 3000 });
   Router.push(`/articles/${id}`);
 }
 

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../../lib/prisma';
 import { getSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
@@ -16,6 +17,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         },
       },
     });
+    toast.success('Bookmark successfully added', { duration: 3000 });
     res.json(result);
   } else {
     res.status(401).send({ message: 'Unauthorized' });
